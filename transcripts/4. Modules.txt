@@ -1,0 +1,21 @@
+start_section "Learning about Modules"
+
+String.reverse("xednI")     # calling the String module
+
+h String
+
+Enum.count([1, 2, 3])
+
+Enum.count(%{one: "for the money", 
+             two: "for the show", 
+             three: "to get ready"})
+
+subl("modules.ex")
+
+c("modules.ex")
+
+products = KitchenTools.product_categories()
+
+KitchenTools.print_products([])
+
+KitchenTools.print_products(products)

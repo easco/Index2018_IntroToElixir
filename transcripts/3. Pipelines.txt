@@ -1,0 +1,33 @@
+# Pipelines
+
+start_section("Pipelines and Transformation")
+
+my_string = "The Quick Brown Fox - Jumped Over the Lazy Dogs."
+
+lower_string = String.downcase(my_string)
+
+word_list = String.split(lower_string, " ")
+
+just_letters = Enum.map(word_list,  &(String.replace(&1, ~r/[^a-z]/, "")))
+
+remove_blanks = Enum.filter(just_letters, &(&1 != ""))
+
+Enum.filter(
+    Enum.map(
+        String.split(
+            String.downcase(my_string), 
+        " "),
+    fn word -> String.replace(word, ~r/[^a-z]/, "") end), 
+&(&1 != ""))
+
+
+my_string |> String.downcase()
+my_string |> String.downcase() |> String.split(" ")
+
+my_string |> 
+String.downcase() |> 
+String.split(" ") |>
+Enum.map(fn word -> String.replace(word, ~r/[^a-z]/, "") end) |>
+Enum.filter(&(&1 != ""))
+
+IO.puts(~s{\n\nresult = my_string \n|> String.downcase() \n|> String.split(" ") \n|> Enum.map(fn word -> String.replace(word, ~r/[^a-z]/, "") end) \n|> Enum.filter(&(&1 != ""))\n\n})

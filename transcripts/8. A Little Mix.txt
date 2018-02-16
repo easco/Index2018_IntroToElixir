@@ -1,0 +1,27 @@
+start_section "Scratch the Surface on Mix"
+
+# In the shell
+
+IO.puts [IO.ANSI.bright, "Switch to the shell now", IO.ANSI.reset]
+
+rm -rf sample_app  # make sure I cleaned up last time
+
+mix help
+
+mix new sample_app --sup
+
+subl sample_app sample_app/mix.exs
+
+# Show mix.exs and lib directory
+
+pushd sample_app
+
+mix compile
+
+# test folder
+
+mix test
+
+popd
+
+rm -rf sample_app  # clean up this time

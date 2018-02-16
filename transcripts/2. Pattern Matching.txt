@@ -1,0 +1,53 @@
+# Pattern Matching
+
+start_section("Pattern Matching")
+
+my_size = 4     # assertion - my_size and 4 are the same thing
+
+my_size         # my_size is changed to make the assertion true
+
+my_size = 100   # assert - my_size and 100 should be the same
+
+100 = my_size   # assertion - 100 and my_size are the same thing
+
+200 = my_size   # assertion - 200 and my_size are the same thing
+
+# Pattern match - Destructuring
+
+{x, y, z} = {"Indy", :erin, "Alex"}
+
+x
+
+y
+
+values = [10, [20, 30, 40], 50]
+
+[left, middle, right] = values
+
+left
+
+middle
+
+right
+
+{:success, result} = {:success, 50}
+
+result
+
+{:success, result} = {:error, "Something Went Wrong"}
+
+[a, _, c] = [4, "fish", 6]
+
+a + c
+
+%{type: animal, name: animal} = %{type: "cow", name: "Bessy"}
+
+%{type: animal, name: which_animal} = %{type: "cow", name: "Bessy"}
+
+{animal, which_animal}
+
+[ head | tail ] = [4, 5, 6]
+
+head
+
+tail

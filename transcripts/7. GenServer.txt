@@ -1,0 +1,34 @@
+start_section "Introducing GenServer"
+
+# same counter example implemented as a genserver
+subl("counter_genserver_1.ex")
+
+c("counter_genserver_1.ex")
+
+{:ok, counter} = Counter.start_link(30)
+
+Process.alive?(counter)
+
+GenServer.call(counter, {:add, 10})
+
+GenServer.call(counter, {:subtract, 5})
+
+GenServer.cast(counter, :show)
+
+GenServer.cast(counter, :stop)
+
+Process.alive?(counter)
+
+subl("counter_genserver_2.ex")
+
+c("counter_genserver_2.ex")
+
+{:ok, counter} = Counter2.start_link(100)
+
+Counter2.add(counter, 50)
+
+Counter2.subtract(counter, 75)
+
+Counter2.show(counter)
+
+Counter2.stop(counter)

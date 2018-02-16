@@ -1,0 +1,53 @@
+start_section "Introduction to Processes"
+
+self()  # who am I?
+
+:observer.start()
+
+# Sending Messages
+
+send(self(), :hello_world)  # send a message to this process
+
+Process.info(self(), :messages)
+
+# Receiving Messages
+
+receive do
+    :hello_world -> IO.puts "Hello, World!"
+end
+
+Process.info(self(), :messages)  # The message is gone
+
+# Create a new process
+
+delayed_greeting = spawn(fn -> 
+        IO.puts("Wait for it")
+        Process.sleep(3000) 
+        IO.puts("Hello, from a process") 
+    end)
+
+subl("echo.ex")
+
+c("echo.ex")
+
+echo = spawn(&EchoProcess.echo_message/0)
+
+send(echo, "Hello, World!")
+
+send(echo, {1, 2}) 
+
+send(echo, [:a, :b, :c])
+
+subl("counter.ex")
+
+c("counter.ex")
+
+counter = Counter.make_counter(10)
+
+send(counter, :show)
+
+send(counter, {:add, 3})
+
+send(counter, {:add, 5})
+
+send(counter, {:subtract, 1})

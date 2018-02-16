@@ -1,0 +1,44 @@
+# Links and Monitors
+
+start_section "Links and Monitors"
+
+counter = Counter.make_counter(40)
+
+send(counter, :show)
+
+Process.alive?(counter)
+
+send(counter, {:die, :bad})
+
+Process.alive?(counter)  # Process died with no consequences
+
+send(counter, {:add, 3})  # Messages to dead processes are swallowed
+
+
+# Spawn link
+
+counter = spawn_link(Counter, :counter, [ 1000 ])
+
+self()
+
+send(counter, {:die, :bad})  # Ack!  iex dies too
+
+self()
+
+counter = spawn_link(Counter, :counter, [ 10_000 ])
+
+send(counter, {:die, :normal})  # ending with a :normal status
+
+Process.alive?(counter)
+
+self()  # iex didn't die this time
+
+counter = Counter.make_counter(100_000)
+
+monitor = Process.monitor(counter)  # set up a monitor
+
+send(counter, {:die, :die})
+
+Process.info(self(), :messages)  # we'll have a message
+
+flush

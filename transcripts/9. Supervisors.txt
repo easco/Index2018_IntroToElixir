@@ -1,0 +1,25 @@
+start_section "Introducing Supervisors"
+
+open supervisor_schematic.pdf
+
+subl chat_bots chat_bots/lib/chat_bots/worker.ex chat_bots/lib/chat_bots/application.ex chat_bots/lib/chat_bots/worker.ex
+
+cd chat_bots
+
+mix run --no-halt
+
+iex -S mix
+
+Process.whereis(:bot_a)
+
+Process.whereis(:bot_b)
+
+ChatBots.Worker.respond_to(:bot_a, "Ahoy!")
+
+ChatBots.Worker.respond_to(:bot_b, "Bonjour!")
+
+ChatBots.Worker.die(:bot_b, :Ack)
+
+Process.whereis(:bot_b)
+
+ChatBots.Worker.respond_to(:bot_b, "Bonjour!")
