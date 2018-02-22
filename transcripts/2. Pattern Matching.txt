@@ -30,11 +30,7 @@ middle
 
 right
 
-{:success, result} = {:success, 50}
-
-result
-
-{:success, result} = {:error, "Something Went Wrong"}
+{:ok, result} = File.open("no_such_file", [:read])
 
 [a, _, c] = [4, "fish", 6]
 

@@ -18,11 +18,11 @@ defmodule Counter do
   #
 
   def handle_call(:get, _sender, state) do
-    {:reply, state}
+    # --> reply, the reply value, and the new state
+    {:reply, state, state}
   end
 
   def handle_call({:add, n}, _sender, state) do
-    # --> reply, the reply value, and the new state
     {:reply, state + n, state + n}
   end
 

@@ -41,7 +41,7 @@ false == :false  # Boolean constants are just atoms
 
 "String"    # strings
 
-"🎆 Strings are Unicode 🎇"
+"Strings are Unicode 🎇 エリクサーでは、Unicode"
 
 ?z #character constant
 

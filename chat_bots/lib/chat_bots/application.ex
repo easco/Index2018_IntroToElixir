@@ -5,6 +5,7 @@ defmodule ChatBots.Application do
 
   use Application
 
+  # --> Want to use logger macros
   require Logger
 
   def start(_type, _args) do
